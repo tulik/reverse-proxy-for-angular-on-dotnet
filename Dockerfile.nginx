@@ -1,0 +1,6 @@
+FROM nginx:latest
+
+RUN mkdir -p /etc/nginx/ssl/
+COPY ./Cert/cert.key /etc/nginx/ssl/
+COPY ./Cert/cert.crt /etc/nginx/ssl/
+COPY conf.d/nginx_main.conf /etc/nginx/nginx.conf

@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+  app:
+    build:
+        context: .
+        dockerfile: Dockerfile
+    container_name: app
+    networks:
+      - app-network
+  
+  nginx:
+    build:
+        context: .
+        dockerfile: Dockerfile.nginx
+    container_name: nginx
+    networks:
+      - app-network
+    depends_on:
+      - app
+    ports:
+      - "8080:80"
+      - "8081:443"
+
+networks:
+  app-network:
+    name: app-network
